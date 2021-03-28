@@ -1,14 +1,11 @@
 <?php
-//Creation dun system de routage
 
-$url = '';
-if (isset($_GET['url'])) {
-    $url = explode('/', $_GET['url']);
-}
+error_reporting(-1);
+ini_set('display_errors', 'On');
 
 
-if ($url == '') {
-    require 'view/articles/index.php';
-} elseif ($url[0] == '' and !empty($url[1])) {
-    echo 'aaa' . $url[1];
-}
+
+require_once '../app/bootstrap.php';
+
+// Init Core Library
+$init = new Core();
