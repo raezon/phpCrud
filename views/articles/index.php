@@ -24,7 +24,8 @@
 	<div class="container-xl">
 		<div class="table-responsive">
 			<div class="table-wrapper">
-				<?= ArticlesView::getTable() ?>
+
+				<?= ArticlesView::getTable($data['articles']) ?>
 				<?= Modal::DisplayModal() ?>
 			</div>
 		</div>
