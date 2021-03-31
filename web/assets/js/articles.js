@@ -4,7 +4,7 @@ $(document).ready(function() {
 
     // Select/Deselect checkboxes
     var checkbox = $('table tbody input[type="checkbox"]');
-    $("#selectAll").click(function() {
+    $("#checkbox1").click(function() {
         if (this.checked) {
             checkbox.each(function() {
                 this.checked = true;
@@ -17,7 +17,7 @@ $(document).ready(function() {
     });
     checkbox.click(function() {
         if (!this.checked) {
-            $("#selectAll").prop("checked", false);
+            $("#checkbox1").prop("checked", false);
         }
     });
 });

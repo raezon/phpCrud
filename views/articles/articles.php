@@ -1,28 +1,51 @@
 <?php
 class ArticlesView
 {
+    //NavBar
+    static function getNavBar()
+    {
+        echo '
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                    <a class="nav-link" href="/Nacer_Brahim/articles">Liste des Articles <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                    <a class="nav-link" href="/Nacer_Brahim/articles/addArticleForm">Ajouter un article<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div>
+        ';
+    }
+    //Avoire le contenu du titre du crud
     static function getTableTitle()
     {
         echo '<div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Manage <b>Articles</b></h2>
+                            <h2>Gestion <b>d"articles</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Article</span></a>
-                            <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+                        <a href="#addArticleModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Article</span></a>
+                        <a href="#deleteArticlesModal" id="selectAll" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Suprimer</span></a>
                         </div>
                     </div>
              </div>';
     }
+    //Avoir le contenu du header de la table
     static function getTableThead()
     {
         echo '<thead>
                  <tr>
                      <th>
                          <span class="custom-checkbox">
-                             <input type="checkbox" id="selectAll">
-                             <label for="selectAll"></label>
+                             <input type="checkbox" id="checkbox1"/>
+                             <label for="checkbox1"></label>
                          </span>
                      </th>
                      <th>ID</th>
@@ -34,6 +57,8 @@ class ArticlesView
                  </tr>
              </thead>';
     }
+    //Avoir le contenu du body de la table
+
     static function getTableBody($articles)
     {
         echo '<tbody>';
@@ -42,7 +67,7 @@ class ArticlesView
             echo  ' <tr>
                         <td>
                             <span class="custom-checkbox">
-                                <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                <input type="checkbox" id="checkbox1" name="articleId[]" value="' . $article->id . '">
                                 <label for="checkbox1"></label>
                             </span>
                         </td>
@@ -52,36 +77,75 @@ class ArticlesView
                         <td>' . $article->description . '</td>
                         <td>' . $article->actif . '</td>
                         <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="/phpCrud/app/articles/deletearticles?id=' . $article->id . '" class="delete" ><i class="material-icons"  title="Delete">&#xE872;</i></a>
+                            <input type="hidden" id="beforeUpdateArticleId' . $article->id . '" name="beforeUpdateArticleId" value=" ' . $article->id . '  "/>
+                            <a href="#editArticleModal" id="beforeUpdateArticleId' . $article->id . '"  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <a href="/Nacer_Brahim/articles/delete/id=' . $article->id . '" class="delete" ><i class="material-icons"  title="Delete">&#xE872;</i></a>
                         </td>
                     </tr>';
         }
         echo     '</tbody>';
     }
-    //Avoir le nombre de page
-    static function getPageNumber()
+
+    static function addArticleForm()
     {
-        echo '<div class="clearfix">
-                <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-                <ul class="pagination">
-                    <li class="page-item disabled"><a href="#">Previous</a></li>
-                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                </ul>
-              </div>';
+
+        echo '<!-- Add Modal HTML -->
+                      
+                <form action="/Nacer_Brahim/articles/addArticle" method="post">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Ajouter un article</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Libellé</label>
+                            <input type="text" class="form-control" name="libellé" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Prix</label>
+                            <input type="number" class="form-control" name="prix" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" name="description" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Etat Article</label>
+                            <select  name="etat" id="etat" required>
+                                <option value="">Choisir un champ </option> 
+                                <option value="y">ative</option>
+                                <option value="n">disactive</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-success" value="Add">
+                    </div>
+                </form>';
     }
+    static function JSFunctionPourRecuperTousLesIDSelectionPourOperationDelete()
+    {
+        echo '	<script src="/Nacer_Brahim/web/assets/js/functionPourRecuperTousLesIDSelectionPourOperationDelete.js"></script>';
+    }
+    static function JSFunctionPourEnvoyerIDpouEdit()
+    {
+
+        echo '	<script src="/Nacer_Brahim/web/assets/js/functionPourEnvoyerIDpouEdit.js"></script>';
+    }
+
     static function getTable($articles)
     {
+
         self::getTableTitle();
         echo '<table class="table table-striped table-hover">';
         self::getTableThead();
         self::getTableBody($articles);
         echo ' </table>';
-        self::getPageNumber();
+
+        //Include Le js la fin du code Html
+        self::JSFunctionPourRecuperTousLesIDSelectionPourOperationDelete();
+        self::JSFunctionPourEnvoyerIDpouEdit();
     }
 }

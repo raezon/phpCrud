@@ -21,27 +21,24 @@ class Article
         return $this->db->resultSet();
     }
 
-    public function getArticleById($id)
-    {
-        $this->db->query('select * from posts where id = :id');
-        $this->db->bind(':id', $id);
-        return $this->db->single();
-    }
 
-    public function getArticleByUserId($user_id)
+
+    public  function getAllArticles()
     {
-        $this->db->query('select count(*) as total from posts where user_id = :user_id');
-        $this->db->bind(':user_id', $user_id);
-        return $this->db->single();
+        $this->db->query('select count(*)
+                                 from jouets p 
+                                 order by p.id desc');
+        return $this->db->resultSet();
     }
 
     public function addArticle($data)
     {
-        $this->db->query('INSERT INTO posts (user_id, title, body) values (:user_id, :title, :body)');
+        $this->db->query('INSERT INTO jouets (`libelle`, `prix`, `description`, `actif`) values (:libelle, :prix, :description,:actif)');
         // Bind values
-        $this->db->bind(':user_id', $data['user_id']);
-        $this->db->bind(':title', $data['title']);
-        $this->db->bind(':body', $data['body']);
+        $this->db->bind(':libelle', $data['libellé']);
+        $this->db->bind(':prix', $data['prix']);
+        $this->db->bind(':description', $data['description']);
+        $this->db->bind(':actif', $data['etat']);
 
         // Execute
         if ($this->db->execute()) {
@@ -51,16 +48,19 @@ class Article
         }
     }
 
-    public function updateArticle($data)
+    public function update($data)
     {
-        $this->db->query('UPDATE posts SET title = :title, body = :body where id = :id');
-        // Bind values
-        $this->db->bind(':id', $data['id']);
-        $this->db->bind(':title', $data['title']);
-        $this->db->bind(':body', $data['body']);
+
+        $id = $data['updateArticleId'];
+        $libelle = $data['libellé'];
+        $prix = $data['prix'];
+        $description = $data['description'];
+        $actif = $data['etat'];
+        $this->db->query("UPDATE jouets SET `id`='$id', `libelle` = '$libelle', `prix` = '$prix' ,`description`='$description' ,`actif`='$actif' WHERE id = '$id'");
 
         // Execute
         if ($this->db->execute()) {
+
             return true;
         } else {
             return false;
@@ -69,10 +69,23 @@ class Article
 
     public function deleteArticle($id)
     {
-        $this->db->query('DELETE FROM jouets where id = :id');
+
+        $this->db->query("DELETE FROM jouets where id = '$id' ");
         // Bind values
         $this->db->bind(':id', $id);
 
+        // Execute
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function deleteAllArticle($idArray)
+    {
+
+
+        $this->db->query("DELETE FROM jouets WHERE id IN ($idArray)");
         // Execute
         if ($this->db->execute()) {
             return true;

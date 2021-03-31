@@ -1,33 +1,38 @@
 <?php
 class Modal
 {
-    static function getEditModal()
+    static function getAddModal()
     {
-        echo '<!-- Edit Modal HTML -->
-                    <div id="addEmployeeModal" class="modal fade">
+        echo '<!-- Add Modal HTML -->
+                    <div id="addArticleModal" class="modal fade">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <form>
+                                <form action="articles/addArticle" method="post">
                                     <div class="modal-header">
-                                        <h4 class="modal-title">Add Employee</h4>
+                                        <h4 class="modal-title">Add Articles</h4>
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <label>Name</label>
-                                            <input type="text" class="form-control" required>
+                                            <label>Libellé</label>
+                                            <input type="text" class="form-control" name="libellé" required>
                                         </div>
                                         <div class="form-group">
-                                            <label>Email</label>
-                                            <input type="email" class="form-control" required>
+                                            <label>Prix</label>
+                                            <input type="number" class="form-control" name="prix" required>
                                         </div>
                                         <div class="form-group">
-                                            <label>Address</label>
-                                            <textarea class="form-control" required></textarea>
+                                            <label>Description</label>
+                                            <textarea class="form-control" name="description" required></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label>Phone</label>
-                                            <input type="text" class="form-control" required>
+                                            <label>Etat Article</label>
+                                            <select  name="etat" id="etat" required>
+                                                <option value="">Choisir un champ </option> 
+                                                <option value="y">ative</option>
+                                                <option value="n">disactive</option>
+
+                                          </select>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -39,13 +44,58 @@ class Modal
                         </div>
                     </div>';
     }
+    static function getEditModal()
+    {
+        echo '<!-- Edit Modal HTML -->
+                    <div id="editArticleModal" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form action="articles/update" method="post">
+                                <input type="hidden" value="-1" id="updateArticleId" name="updateArticleId"/>
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Edit Article</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label>Libellé</label>
+                                            <input type="text" class="form-control" name="libellé" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Prix</label>
+                                            <input type="number" class="form-control" name="prix" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <textarea class="form-control" name="description" required></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Etat Article</label>
+                                            <select  name="etat" id="etat" required>
+                                                <option value="">Choisir un champ </option> 
+                                                <option value="y">ative</option>
+                                                <option value="n">disactive</option>
+
+                                          </select>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                        <input type="submit" class="btn btn-success" value="Update">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>';
+    }
     static function getModalDelete()
     {
         echo '	<!-- Delete Modal HTML -->
-                <div id="deleteEmployeeModal" class="modal fade">
+                <div id="deleteArticlesModal" class="modal fade">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <form>
+                        <form action="articles/deleteAllArticles" method="post">
+                                <input type="hidden" value="-1" id="deletAll" name="deleteAllArray"/>
                                 <div class="modal-header">
                                     <h4 class="modal-title">Delete Article</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -67,6 +117,7 @@ class Modal
 
     static function DisplayModal()
     {
+        self::getAddModal();
         self::getEditModal();
         self::getModalDelete();
     }

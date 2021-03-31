@@ -14,6 +14,7 @@ require_once 'libraries/Database.php';
 require_once 'views/articles/articles.php';
 require_once 'views/articles/modal.php';
 
+
 // Autoload Core Libraries
 spl_autoload_register(function ($className) {
     require_once 'libraries/' . $className . '.php';

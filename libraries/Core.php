@@ -8,7 +8,7 @@
 class Core
 {
 
-    protected $currentController = 'landingpage';
+    protected $currentController = 'article';
     protected $currentMethod = 'index';
     protected $params = [];
 
@@ -17,21 +17,21 @@ class Core
         $url = $this->getUrl();
 
         // Look in controllers for first value
+
         if (empty($url[0])) {
-            $this->currentController = 'landingpage';
-        } else {
-            if (file_exists('../app/controllers/' . ucwords($url[0]) . '.php')) {
-                // If exists, set as controller
-                $this->currentController = ucwords($url[0]);
-                // Unset 0 url
-                unset($url[0]);
-            }
+            $this->currentController = 'articles';
+        } else
+	            if (file_exists('../Nacer_Brahim/controllers/' . ucwords($url[0]) . '.php')) {
+            // If exists, set as controller
+            $this->currentController = ucwords($url[0]);
+            // Unset 0 url
+            unset($url[0]);
         }
 
 
 
         // Require the controller
-        require_once '../app/controllers/' . $this->currentController . '.php';
+        require_once '../Nacer_Brahim/controllers/' . $this->currentController . '.php';
 
         // Instantiate controller class
         $this->currentController =  new $this->currentController;
@@ -46,6 +46,14 @@ class Core
 
         // Get params
         $this->params = $url ? array_values($url) : [];
+        if (!empty($url[2]))
+            if (array_key_exists(2, $url)) {
+                $this->params = array();
+                $url_apres_explode = explode("=", $url[2]);
+                if (array_key_exists(1, $url_apres_explode))
+                    $this->params[] = $url_apres_explode[1];
+            }
+
 
         //Call a callback with array of params
         call_user_func_array([$this->currentController, $this->currentMethod], $this->params);
