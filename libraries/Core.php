@@ -21,7 +21,7 @@ class Core
         if (empty($url[0])) {
             $this->currentController = 'articles';
         } else
-	            if (file_exists('../Nacer_Brahim/controllers/' . ucwords($url[0]) . '.php')) {
+	            if (file_exists('./controllers/' . ucwords($url[0]) . '.php')) {
             // If exists, set as controller
             $this->currentController = ucwords($url[0]);
             // Unset 0 url
@@ -31,7 +31,7 @@ class Core
 
 
         // Require the controller
-        require_once '../Nacer_Brahim/controllers/' . $this->currentController . '.php';
+        require_once './controllers/' . $this->currentController . '.php';
 
         // Instantiate controller class
         $this->currentController =  new $this->currentController;

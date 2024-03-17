@@ -1,57 +1,56 @@
 <?php
 
-
-
 class Articles extends Controller
 {
+    private $articlesModel;
 
     public function __construct()
     {
-
         $this->articlesModel = $this->model('Article');
     }
 
-    //page d'acceuil
+    // Page d'accueil
     public function index()
     {
-        //Ici on va recuperer les données en utilsant une méthode qui va retourner tous les articles de notre table article
+        // Récupération des articles depuis le modèle
         $articles = $this->articlesModel->getArticles();
         $data = [
             'articles' => $articles
         ];
         $this->view('articles/index', $data);
     }
-    //Ajouter un nouveau article
+
+    // Ajouter un nouvel article
     public function addArticle()
     {
         $this->articlesModel->addArticle($_POST);
-        header("Location: /Nacer_Brahim/articles");
+        header("Location: /articles");
     }
+
+    // Afficher le formulaire d'ajout d'article
     public function addArticleForm()
     {
         $this->view('articles/addArticleForm');
     }
-    //Modifier un article
+
+    // Modifier un article
     public function update()
     {
-
-        //Ici on va recuperer les données en utilsant une méthode qui va retourner tous les articles de notre table article
         $this->articlesModel->update($_POST);
-        header("Location: /Nacer_Brahim/articles");
+        header("Location: /articles");
     }
-    //Suprimer un article
+
+    // Supprimer un article
     public function delete($id)
     {
-        //Ici on va recuperer les données en utilsant une méthode qui va retourner tous les articles de notre table article
         $this->articlesModel->deleteArticle($id);
-
-        header("Location: /Nacer_Brahim/articles");
+        header("Location: /articles");
     }
-    //Suprimer tous les articles selectioner
+
+    // Supprimer tous les articles sélectionnés
     public function deleteAllArticles()
     {
-
         $this->articlesModel->deleteAllArticle($_POST['deleteAllArray']);
-        header("Location: /Nacer_Brahim/articles");
+        header("Location: /articles");
     }
 }
