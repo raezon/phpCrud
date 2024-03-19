@@ -11,5 +11,11 @@ class Site extends Controller
         return renderTemplate('site/index', ['title' => 'Djebabla']);
     }
 
+    public function about()
+    {
+        // Use the helper function to get the singleton instance of Engine
+        return renderTemplate('site/about', ['title' => 'Djebabla']);
+    }
+
 
 }

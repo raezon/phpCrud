@@ -20,5 +20,12 @@ final class CreateTableUser extends AbstractMigration
     public function change(): void
     {
 
+        $table = $this->table('user', ['id' => false, 'primary_key' => 'id']);
+        $table->addColumn('id', 'biginteger', ['identity' => true])
+              ->addColumn('username', 'string', ['limit' => 255])
+              ->addColumn('password', 'string', ['limit' => 255])
+              ->addColumn('email', 'string', ['limit' => 255])
+              ->addColumn('type', 'string', ['limit' => 255])
+              ->create();
     }
 }
