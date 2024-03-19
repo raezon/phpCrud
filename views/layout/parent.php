@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>online_shoping</title>
-    <link rel="stylesheet" href="web/assets/css/layout.css">
+    <link rel="stylesheet" href="/phpCrud/web/assets/css/layout.css">
     <script src="web/assets/js/script.js"></script>
 </head>
 
 <body>
     <section id="header">
-        <a href="#"><img src="img/logo.png" class="logo" alt=""></a>
+        <a href="#"><img src="/phpCrud/web/assets/img/logo.png" class="logo" alt=""></a>
         <div>
             <ul id="navbar">
                 <li><a class="active" href="index.html">Home</a></li>
@@ -77,11 +77,11 @@
             <h4>Install App</h4>
             <p>From App Store or Google Play</p>
             <div class="row">
-                <img src="img/pay/app.jpg" alt="">
-                <img src="img/pay/play.jpg" alt="">
+                <img src="/phpCrud/web/assets/img/pay/app.jpg" alt="">
+                <img src="/phpCrud/web/assets/img/pay/play.jpg" alt="">
             </div>
             <p>Secured Payment Gateways</p>
-            <img src="img/pay/pay.png" alt="">
+            <img src="/phpCrud/web/assets/img/pay/pay.png" alt="">
         </div>
 
         <div class="copyright">
