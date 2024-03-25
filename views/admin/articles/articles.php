@@ -61,7 +61,7 @@ class ArticlesView
     {
         echo '<tbody>';
         foreach ($articles as $article) {
-
+    
             echo  ' <tr>
                         <td>
                             <span class="custom-checkbox">
@@ -77,12 +77,13 @@ class ArticlesView
                         <td>
                             <input type="hidden" id="beforeUpdateArticleId' . $article->id . '" name="beforeUpdateArticleId" value=" ' . $article->id . '  "/>
                             <a href="#editArticleModal" id="beforeUpdateArticleId' . $article->id . '"  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a href="/articles/delete/id=' . $article->id . '" class="delete" ><i class="material-icons"  title="Delete">&#xE872;</i></a>
+                            <a href="articles/delete/id=' . $article->id . '" class="delete" ><i class="material-icons"  title="Delete">&#xE872;</i></a>
                         </td>
                     </tr>';
         }
         echo     '</tbody>';
     }
+    
 
     static function addArticleForm()
     {

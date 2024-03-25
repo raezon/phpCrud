@@ -1,5 +1,8 @@
 RewriteEngine On
 
+# Check if the requested URL does not point to an existing file
 RewriteCond %{REQUEST_FILENAME} !-f
+# Check if the requested URL does not point to an existing directory
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php?url=$1 [Nc,L]
+# Rewrite the URL to index.php and pass the path as a parameter named 'url'
+RewriteRule ^(.*)$ /phpCrud/index.php?url=$1 [NC,L]

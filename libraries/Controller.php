@@ -26,4 +26,26 @@ class Controller
             die('View does not exists');
         }
     }
+
+        // Method to perform redirection based on the base URL
+        public function redirect($method)
+        {
+            // Get the current URL path
+            $currentUrl = $_SERVER['REQUEST_URI'];
+
+            // Parse the URL to extract the path
+            $urlParts = parse_url($currentUrl);
+    
+            // Get the path component from the parsed URL
+            $path = $urlParts['path'];
+    
+            // Explode the path into an array using '/' as the delimiter
+            $pathParts = explode('/', $path);
+    
+            // Extract the base URL from the path
+            $baseUrl = $pathParts[1]; // Assuming the base URL is the second element
+           
+            header("Location: /$baseUrl/$method");
+            exit; // Make sure to exit to prevent further execution
+        }
 }

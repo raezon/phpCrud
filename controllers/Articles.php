@@ -23,7 +23,7 @@ class Articles extends Controller
     public function addArticle()
     {
         $this->articlesModel->addArticle($_POST);
-        header("Location: /articles");
+        $this->redirect('articles');
     }
 
     // Afficher le formulaire d'ajout d'article
@@ -37,20 +37,22 @@ class Articles extends Controller
     public function update()
     {
         $this->articlesModel->update($_POST);
-        header("Location: /articles");
+        $this->redirect('articles');
     }
 
     // Supprimer un article
     public function delete($id)
     {
+ 
         $this->articlesModel->deleteArticle($id);
-        header("Location: /articles");
+        $this->redirect('articles');
+
     }
 
     // Supprimer tous les articles sélectionnés
     public function deleteAllArticles()
     {
         $this->articlesModel->deleteAllArticle($_POST['deleteAllArray']);
-        header("Location: /articles");
+        $this->redirect('articles');
     }
 }
