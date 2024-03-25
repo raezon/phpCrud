@@ -1,4 +1,5 @@
 <?php $this->layout('layout/parent', ['title' => 'Home']) ?>
+
 <section class="account-page">
         <div class="container">
             <div class="row">

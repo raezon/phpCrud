@@ -14,8 +14,12 @@ class Modal
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <label>Libellé</label>
-                                            <input type="text" class="form-control" name="libellé" required>
+                                            <label>Nom</label>
+                                            <input type="text" class="form-control" name="nom" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Mark</label>
+                                            <input type="text" class="form-control" name="mark" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Prix</label>
@@ -27,7 +31,7 @@ class Modal
                                         </div>
                                         <div class="form-group">
                                             <label>Etat Article</label>
-                                            <select  name="etat" id="etat" required>
+                                            <select  name="actif" id="etat" required>
                                                 <option value="">Choisir un champ </option> 
                                                 <option value="y">ative</option>
                                                 <option value="n">disactive</option>
@@ -53,25 +57,29 @@ class Modal
                                 <form action="articles/update" method="post">
                                 <input type="hidden" value="-1" id="updateArticleId" name="updateArticleId"/>
                                     <div class="modal-header">
-                                        <h4 class="modal-title">Edit Article</h4>
+                                        <h4 class="modal-title">Edit Product</h4>
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <label>Libellé</label>
-                                            <input type="text" class="form-control" name="libellé" required>
+                                            <label>Nom</label>
+                                            <input type="text" class="form-control" name="nom" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Prix</label>
                                             <input type="number" class="form-control" name="prix" required>
                                         </div>
                                         <div class="form-group">
+                                            <label>Mark</label>
+                                            <input type="text" class="form-control" name="mark" required></input>
+                                        </div>
+                                        <div class="form-group">
                                             <label>Description</label>
                                             <textarea class="form-control" name="description" required></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label>Etat Article</label>
-                                            <select  name="etat" id="etat" required>
+                                            <label>Etat Produit</label>
+                                            <select  name="actif" id="etat" required>
                                                 <option value="">Choisir un champ </option> 
                                                 <option value="y">ative</option>
                                                 <option value="n">disactive</option>
@@ -97,7 +105,7 @@ class Modal
                         <form action="articles/deleteAllArticles" method="post">
                                 <input type="hidden" value="-1" id="deletAll" name="deleteAllArray"/>
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Delete Article</h4>
+                                    <h4 class="modal-title">Delete Produit</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                 </div>
                                 <div class="modal-body">

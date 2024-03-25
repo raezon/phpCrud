@@ -12,7 +12,7 @@
 
 <body>
     <section id="header">
-        <a href="#"><img src="/phpCrud/web/assets/img/logo.png" class="logo" alt=""></a>
+        <a href="#"><img src="web/assets/img/logo.png" class="logo" alt=""></a>
         <div>
             <ul id="navbar">
                 <li><a class="active" href="index.html">Home</a></li>
@@ -77,11 +77,11 @@
             <h4>Install App</h4>
             <p>From App Store or Google Play</p>
             <div class="row">
-                <img src="/phpCrud/web/assets/img/pay/app.jpg" alt="">
-                <img src="/phpCrud/web/assets/img/pay/play.jpg" alt="">
+                <img src="web/assets/img/pay/app.jpg" alt="">
+                <img src="web/assets/img/pay/play.jpg" alt="">
             </div>
             <p>Secured Payment Gateways</p>
-            <img src="/phpCrud/web/assets/img/pay/pay.png" alt="">
+            <img src="web/assets/img/pay/pay.png" alt="">
         </div>
 
         <div class="copyright">

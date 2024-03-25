@@ -14,10 +14,9 @@ class Articles extends Controller
     {
         // Récupération des articles depuis le modèle
         $articles = $this->articlesModel->getArticles();
-        $data = [
-            'articles' => $articles
-        ];
-        $this->view('articles/index', $data);
+ 
+
+        return renderTemplate('admin/articles/index', ['articles' => $articles]);
     }
 
     // Ajouter un nouvel article
@@ -30,7 +29,8 @@ class Articles extends Controller
     // Afficher le formulaire d'ajout d'article
     public function addArticleForm()
     {
-        $this->view('articles/addArticleForm');
+    
+        return renderTemplate('admin/articles/addArticleForm', []);
     }
 
     // Modifier un article

@@ -1,5 +1,5 @@
 <?php
-/*
+   /*
     * App Core Class
     * Create URL & load core controller
     * URL FORMAT - /controller/method/params
@@ -25,6 +25,9 @@
                 unset($url[0]);
             } else {
                 // Controller file doesn't exist, set to error controller
+                /*if (!class_exists('Error')) {
+                    require_once './controllers/Error.php'; // Include Error class if not already included
+                }*/
                 $this->currentController = 'errors'; // Change to your error controller name
             }
     
@@ -49,21 +52,16 @@
             call_user_func_array([$this->currentController, $this->currentMethod], $this->params);
         }
     
-        public function getUrl()
+        public function  getUrl()
         {
-            $baseUrl = getenv('BASE_URL'); // Retrieve base URL from environment variable
-            $baseUrl = rtrim($baseUrl, '/');
-            $requestUri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
-    
-            // Replace '../web' with the base URL if found at the beginning of the request URI
-            if (strpos($requestUri, '../web') === 0) {
-                $requestUri = $baseUrl . substr($requestUri, 7);
+
+            
+            if (isset($_GET['url'])) {
+                $url = rtrim($_GET['url'], '/');
+                $url = filter_var($url, FILTER_SANITIZE_URL);
+                $url = explode('/', $url);
+                return $url;
             }
-    
-            // Explode URL and return
-            $url = rtrim($requestUri, '/');
-            $url = filter_var($url, FILTER_SANITIZE_URL);
-            return explode('/', $url);
         }
     }
     
